@@ -17,7 +17,6 @@ def index():
         num_pages = int(request.form.get('num_pages', 2)) 
         
         try:
-            # Run the scraping function with the provided inputs
             output_file = run_scraping(keyword, location, num_pages)
             download_link = f"/download/{output_file}"
         except Exception as e:
@@ -55,12 +54,10 @@ def run_scraping(keyword, location, num_pages):
 
     driver.quit()
 
-    # Save the data to an Excel file
     if len(all_names) != len(all_links):
         print(f"Warning: Mismatch in counts! Names: {len(all_names)}, URLs: {len(all_links)}")
         raise ValueError("Mismatch between names and links. Please try again.")
-    
-    # Check if no data was collected
+
     if not all_names or not all_links:
         raise ValueError("No results found. Please provide a proper keyword and location.")
 
