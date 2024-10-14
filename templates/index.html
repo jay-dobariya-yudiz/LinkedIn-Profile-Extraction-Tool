@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkedIn Profile Extraction Tool</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #f3f4f6;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #007bff;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* Card Layout for Form */
+        .card {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        label {
+            text-align: left;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-size: 1em;
+            width: 100%;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="number"]:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        small {
+            text-align: left;
+            color: #666;
+            font-size: 0.85em;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Download Link */
+        .download-link {
+            margin-top: 20px;
+            background: #e3f2fd;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #007bff;
+            display: inline-block;
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .download-link:hover {
+            background: #007bff;
+            color: #fff;
+        }
+
+        .error {
+            color: red;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 500px) {
+            .card {
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 1.5em;
+            }
+
+            button {
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>LinkedIn Profile Scraper</h1>
+        <form method="POST">
+            <label for="keyword">Keyword:</label>
+            <input type="text" id="keyword" name="keyword" placeholder="e.g., Python Developer" required>
+            
+            <label for="location">Location:</label>
+            <input type="text" id="location" name="location" placeholder="e.g., United States" required>
+            
+            <label for="num_pages">Number of Pages:</label>
+            <input type="number" id="num_pages" name="num_pages" min="1" max="10" value="2">
+            
+            <button type="submit">Start Scraping</button>
+        </form>
+        
+        <!-- Show the error message if available -->
+        {% if error_message %}
+            <div class="error">{{ error_message }}</div>
+        {% endif %}
+
+        <!-- Show the download link if available -->
+        {% if download_link %}
+            <a class="download-link" href="{{ download_link }}">Download Scraped Data</a>
+        {% endif %}
+    </div>
+</body>
+</html>
